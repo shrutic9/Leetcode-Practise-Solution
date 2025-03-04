@@ -1,0 +1,17 @@
+class Solution {
+    public List<String> topKFrequent(String[] words, int k) {
+        Map<String,Integer> freqMap = new HashMap<>();
+        for(String word: words){
+            freqMap.put(word, freqMap.getOrDefault(word, 0)+1);
+        }
+
+        List<String> sorted = new ArrayList<>(freqMap.keySet());
+        sorted.sort((a,b)->{
+            if(freqMap.get(a).equals(freqMap.get(b))){
+                return a.compareTo(b);
+            }
+            return freqMap.get(b)-freqMap.get(a);
+        });
+        return sorted.subList(0,k);
+    }
+}
